@@ -4,6 +4,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:happyshop/widgets/ad_service.dart';
 import 'package:happyshop/widgets/search_area.dart';
 
+import '../widgets/discount_ends.dart';
+import '../widgets/item.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -23,6 +26,8 @@ class _MainPageState extends State<MainPage> {
               child: const SearchArea(),
             ),
             const AdService(),
+            const DiscountLine(),
+            const Item(),
           ],
         ),
       ),

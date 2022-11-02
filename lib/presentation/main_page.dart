@@ -27,7 +27,18 @@ class _MainPageState extends State<MainPage> {
             ),
             const AdService(),
             const DiscountLine(),
-            const Item(),
+            Expanded(
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: const [
+                  Item(),
+                  Item(),
+                  Item(),
+                  Item(),
+                  Item(),
+                ],
+              ),
+            ),
           ],
         ),
       ),

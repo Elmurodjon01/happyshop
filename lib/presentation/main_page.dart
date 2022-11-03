@@ -1,175 +1,50 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:happyshop/constants/constants.dart';
+import 'package:happyshop/presentation/accountScreen.dart';
+import 'package:happyshop/presentation/bag_screen.dart';
+import 'package:happyshop/presentation/categoryScreen.dart';
+import 'package:happyshop/presentation/homeScreen.dart';
+import 'package:happyshop/presentation/wishlistScreen.dart';
+import 'package:happyshop/services/provider.dart';
 import 'package:happyshop/widgets/ad_service.dart';
 import 'package:happyshop/widgets/reusable_seeall.dart';
 import 'package:happyshop/widgets/search_area.dart';
 import 'package:happyshop/widgets/upcomingPromotion.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/bottomNavigationBar.dart';
 import '../widgets/discount_ends.dart';
 import '../widgets/itemReusable.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
-
   @override
   State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
   final ScrollController _scrollController = ScrollController();
+  final List screens = const [
+    HomeScreen(),
+    CategoryScreen(),
+    BagScreen(),
+    WishListScreen(),
+    AccountScreen(),
+  ];
+  SMProvider smprovider = SMProvider();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: const SearchArea(),
-            ),
-            Expanded(
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  const AdService(),
-                  const DiscountLine(),
-                  SizedBox(
-                    height: 180,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/564x/86/70/15/86701598584a2376858647b302124273.jpg',
-                          label: 'Pull and deer',
-                          style: 'Bear',
-                          price: '\$398.90',
-                          discount: '\$402.00',
-                        ),
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/564x/86/70/15/86701598584a2376858647b302124273.jpg',
-                          label: 'Pull and deer',
-                          style: 'Bear',
-                          price: '\$398.90',
-                          discount: '\$402.00',
-                        ),
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/564x/86/70/15/86701598584a2376858647b302124273.jpg',
-                          label: 'Pull and deer',
-                          style: 'Bear',
-                          price: '\$398.90',
-                          discount: '\$402.00',
-                        ),
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/564x/86/70/15/86701598584a2376858647b302124273.jpg',
-                          label: 'Pull and deer',
-                          style: 'Bear',
-                          price: '\$398.90',
-                          discount: '\$402.00',
-                        ),
-                      ],
-                    ),
-                  ),
-                  ReusableSeeAll('Upcoming promotion'),
-                  SizedBox(
-                    height: 75,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: const [
-                        PromotionItem(),
-                        PromotionItem(),
-                        PromotionItem(),
-                        PromotionItem(),
-                      ],
-                    ),
-                  ),
-                  ReusableSeeAll('New in '),
-                  SizedBox(
-                    height: 180,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/564x/d5/57/61/d5576189e807ec200a3e610ac1109411.jpg',
-                          label: 'Nike',
-                          style: 'classic',
-                          price: '\$258.00',
-                        ),
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/564x/d5/57/61/d5576189e807ec200a3e610ac1109411.jpg',
-                          label: 'Nike',
-                          style: 'classic',
-                          price: '\$258.00',
-                        ),
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/564x/d5/57/61/d5576189e807ec200a3e610ac1109411.jpg',
-                          label: 'Nike',
-                          style: 'classic',
-                          price: '\$258.00',
-                        ),
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/564x/d5/57/61/d5576189e807ec200a3e610ac1109411.jpg',
-                          label: 'Nike',
-                          style: 'classic',
-                          price: '\$258.00',
-                        ),
-                      ],
-                    ),
-                  ),
-                  ReusableSeeAll('Most popular'),
-                  SizedBox(
-                    height: 180,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/736x/93/c0/ba/93c0ba091e9682cdc5be60883e0ba4d8.jpg',
-                          label: 'Creed Aventus',
-                          style: 'for man',
-                          price: '\$127.00',
-                        ),
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/736x/93/c0/ba/93c0ba091e9682cdc5be60883e0ba4d8.jpg',
-                          label: 'Creed Aventus',
-                          style: 'for man',
-                          price: '\$127.00',
-                        ),
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/736x/93/c0/ba/93c0ba091e9682cdc5be60883e0ba4d8.jpg',
-                          label: 'Creed Aventus',
-                          style: 'for man',
-                          price: '\$127.00',
-                        ),
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/736x/93/c0/ba/93c0ba091e9682cdc5be60883e0ba4d8.jpg',
-                          label: 'Creed Aventus',
-                          style: 'for man',
-                          price: '\$127.00',
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: const BottomNavBar(),
+    final provider = Provider.of<SMProvider>(context);
+    return Consumer(
+      builder: (context, value, child) {
+        return Scaffold(
+          body: screens[provider.initialIndex],
+          bottomNavigationBar: BottomNavBar(),
+        );
+      },
     );
   }
 }

@@ -37,6 +37,7 @@ class ItemReusable extends StatelessWidget {
             ),
           ),
           Container(
+            width: 125,
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

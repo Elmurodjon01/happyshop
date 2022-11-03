@@ -22,7 +22,7 @@ class ReusableSeeAll extends StatelessWidget {
               //TODO it should show all the item in the listview
             },
             child: const Text(
-              'See All',
+              'See all',
               style: kSeeAllStyle,
             ),
           ),

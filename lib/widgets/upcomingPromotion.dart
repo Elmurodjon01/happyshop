@@ -7,7 +7,7 @@ class PromotionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 10, left: 5),
-      height: 55,
+      height: 80,
       width: 170,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),

@@ -11,6 +11,7 @@ const kAdTextStyle = TextStyle(
 );
 const kDiscountColor =
     TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16);
-const kDiscountEnds = TextStyle(fontSize: 16, fontWeight: FontWeight.w600);
+const kDiscountEnds =
+    TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black);
 const kSeeAllStyle = TextStyle(fontWeight: FontWeight.w700, fontSize: 16);
 const kbottomNavColor = Color(0xFF6C28FE);

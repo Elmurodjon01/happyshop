@@ -1,9 +1,13 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:happyshop/constants/constants.dart';
+import 'package:happyshop/presentation/discountPage.dart';
+import 'package:slide_countdown/slide_countdown.dart';
 
 class DiscountLine extends StatelessWidget {
-  const DiscountLine({super.key});
-
+  String? seeAll;
+  DiscountLine(this.seeAll);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -12,17 +16,21 @@ class DiscountLine extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
-            children: const [
-              Text(
+            children: [
+              const Text(
                 'Discount ends in',
                 style: kDiscountEnds,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
-              Text(
-                'hh, mm, ss',
-                style: kDiscountEnds,
+              SlideCountdownSeparated(
+                decoration: BoxDecoration(
+                  color: kbottomNavColor,
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                duration: const Duration(days: 1),
+                countUp: false,
               ),
             ],
           ),
@@ -30,9 +38,13 @@ class DiscountLine extends StatelessWidget {
             onPressed: () {
               //TODO it should show all the item in the listview
             },
-            child: const Text(
-              'See all',
-              style: kSeeAllStyle,
+            child: GestureDetector(
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => DiscountScreen())),
+              child: Text(
+                seeAll ?? '',
+                style: kSeeAllStyle,
+              ),
             ),
           ),
         ],

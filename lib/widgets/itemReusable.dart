@@ -1,23 +1,38 @@
 import 'package:flutter/material.dart';
 
-class Item extends StatelessWidget {
-  const Item({super.key});
+class ItemReusable extends StatelessWidget {
+  String? discount;
+  late String label;
+  late String style;
+  late String price;
+  late String image;
+  ItemReusable({
+    super.key,
+    this.discount,
+    required this.label,
+    required this.price,
+    required this.style,
+    required this.image,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       // height: 149,
-      width: 121,
-      margin: const EdgeInsets.only(right: 10, top: 5, left: 5),
+      width: 122,
+      //TODO this may cause a overflow problem
+      margin: const EdgeInsets.only(right: 10, left: 5),
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             margin: const EdgeInsets.only(bottom: 5),
             height: 100,
-            width: 121,
+            width: 122,
             child: Image.network(
-              'https://i.pinimg.com/564x/67/a9/50/67a950538e2eb719a3993ff73a3fbe0f.jpg',
+              image,
               fit: BoxFit.cover,
             ),
           ),
@@ -25,12 +40,12 @@ class Item extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 Text(
-                  'Donatello',
-                  style: TextStyle(fontSize: 14),
+                  label,
+                  style: const TextStyle(fontSize: 14),
                 ),
-                Image(
+                const Image(
                   image: AssetImage(
                     'assets/icons/favourite.jpeg',
                   ),
@@ -40,28 +55,28 @@ class Item extends StatelessWidget {
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 5),
+          Padding(
+            padding: const EdgeInsets.only(left: 5),
             child: Text(
-              'Cream elegant',
-              style: TextStyle(fontSize: 12, color: Color(0xFFA4A4A4)),
+              style,
+              style: const TextStyle(fontSize: 12, color: Color(0xFFA4A4A4)),
             ),
           ),
           const SizedBox(
             height: 7,
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 5),
+          Padding(
+            padding: const EdgeInsets.only(left: 5),
             child: Text(
-              '\$400.00',
-              style: TextStyle(color: Color(0xFF6C28FE), fontSize: 14),
+              price,
+              style: const TextStyle(color: Color(0xFF6C28FE), fontSize: 14),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 7),
+          Padding(
+            padding: const EdgeInsets.only(left: 7),
             child: Text(
-              '\$456.00',
-              style: TextStyle(
+              discount ?? '',
+              style: const TextStyle(
                 color: Color(0xFF777777),
                 fontSize: 10,
                 decoration: TextDecoration.lineThrough,

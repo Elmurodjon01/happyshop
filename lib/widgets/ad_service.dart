@@ -31,7 +31,7 @@ class AdService extends StatelessWidget {
             children: [
               const SizedBox(
                 height: 47,
-                width: 213,
+                width: 211,
                 child: Text(
                   'Discount of all types of clothes',
                   style: kAdTextStyle,

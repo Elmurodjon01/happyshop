@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:happyshop/constants/constants.dart';
 
-class DiscountLine extends StatelessWidget {
-  const DiscountLine({super.key});
+import '../constants/constants.dart';
+
+class ReusableSeeAll extends StatelessWidget {
+  late String leading;
+  ReusableSeeAll(this.leading);
 
   @override
   Widget build(BuildContext context) {
@@ -11,27 +13,16 @@ class DiscountLine extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: const [
-              Text(
-                'Discount ends in',
-                style: kDiscountEnds,
-              ),
-              SizedBox(
-                width: 8,
-              ),
-              Text(
-                'hh, mm, ss',
-                style: kDiscountEnds,
-              ),
-            ],
+          Text(
+            leading,
+            style: kDiscountEnds,
           ),
           TextButton(
             onPressed: () {
               //TODO it should show all the item in the listview
             },
             child: const Text(
-              'See all',
+              'See All',
               style: kSeeAllStyle,
             ),
           ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:happyshop/constants/constants.dart';
 import 'package:happyshop/widgets/ad_service.dart';
 import 'package:happyshop/widgets/reusable_seeall.dart';
 import 'package:happyshop/widgets/search_area.dart';
 import 'package:happyshop/widgets/upcomingPromotion.dart';
 
+import '../widgets/bottomNavigationBar.dart';
 import '../widgets/discount_ends.dart';
 import '../widgets/itemReusable.dart';
 
@@ -134,28 +136,28 @@ class _MainPageState extends State<MainPage> {
                           image:
                               'https://i.pinimg.com/736x/93/c0/ba/93c0ba091e9682cdc5be60883e0ba4d8.jpg',
                           label: 'Creed Aventus',
-                          style: 'for Man',
+                          style: 'for man',
                           price: '\$127.00',
                         ),
                         ItemReusable(
                           image:
                               'https://i.pinimg.com/736x/93/c0/ba/93c0ba091e9682cdc5be60883e0ba4d8.jpg',
                           label: 'Creed Aventus',
-                          style: 'for Man',
+                          style: 'for man',
                           price: '\$127.00',
                         ),
                         ItemReusable(
                           image:
                               'https://i.pinimg.com/736x/93/c0/ba/93c0ba091e9682cdc5be60883e0ba4d8.jpg',
                           label: 'Creed Aventus',
-                          style: 'for Man',
+                          style: 'for man',
                           price: '\$127.00',
                         ),
                         ItemReusable(
                           image:
                               'https://i.pinimg.com/736x/93/c0/ba/93c0ba091e9682cdc5be60883e0ba4d8.jpg',
                           label: 'Creed Aventus',
-                          style: 'for Man',
+                          style: 'for man',
                           price: '\$127.00',
                         ),
                       ],
@@ -167,6 +169,7 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }

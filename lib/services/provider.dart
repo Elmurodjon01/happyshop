@@ -10,4 +10,10 @@ class SMProvider extends ChangeNotifier {
     _i = newI;
     notifyListeners();
   }
+
+  void adIndex(page) {
+    int activePage = 0;
+    activePage = page;
+    notifyListeners();
+  }
 }

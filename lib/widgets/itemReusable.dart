@@ -6,6 +6,8 @@ class ItemReusable extends StatelessWidget {
   late String style;
   late String price;
   late String image;
+  double? width = 122;
+  double? height = 100;
   ItemReusable({
     super.key,
     this.discount,
@@ -13,6 +15,8 @@ class ItemReusable extends StatelessWidget {
     required this.price,
     required this.style,
     required this.image,
+    this.height,
+    this.width,
   });
 
   @override

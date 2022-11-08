@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
 class PromotionItem extends StatelessWidget {
-  const PromotionItem({super.key});
+  double? height = 80;
+  double? width = 170;
+  PromotionItem({
+    this.height = 80,
+    this.width = 170,
+});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(right: 10, left: 5),
-      height: 80,
-      width: 170,
+      height: height,
+      width: width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         image: const DecorationImage(

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:happyshop/constants/constants.dart';
-import 'package:happyshop/presentation/discountPage.dart';
+import 'package:happyshop/presentation/subpages/discountPage.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
 class DiscountLine extends StatelessWidget {

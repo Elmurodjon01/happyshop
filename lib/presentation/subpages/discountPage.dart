@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:happyshop/widgets/discount_ends.dart';
 
-import '../widgets/itemReusable.dart';
+import '../../widgets/itemReusable.dart';
 
 class DiscountScreen extends StatelessWidget {
   const DiscountScreen({super.key});

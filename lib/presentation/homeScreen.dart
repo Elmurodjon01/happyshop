@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:happyshop/presentation/subpages/promotionPage.dart';
+import 'package:happyshop/presentation/subpages/shoesPage.dart';
 
+import '../constants/constants.dart';
 import '../widgets/ad_service.dart';
 import '../widgets/discount_ends.dart';
 import '../widgets/itemReusable.dart';
@@ -67,12 +70,19 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   ),
-                ReusableSeeAll('Upcoming promotion'),
+                ReusableSeeAll(leading: 'Upcoming promotion',text: GestureDetector(
+                  onTap: ()=> Navigator.push(context,
+                      MaterialPageRoute(builder: (context) =>  PromotionPage(title: 'Promotions',))),
+                  child: const Text(
+                    'See all',
+                    style: kSeeAllStyle,
+                  ),
+                ),),
                 SizedBox(
                   height: 85,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
-                    children: const [
+                    children:  [
                       PromotionItem(),
                       PromotionItem(),
                       PromotionItem(),
@@ -80,7 +90,14 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                ReusableSeeAll('New in Shoes'),
+                ReusableSeeAll(leading: 'New in Shoes', text: GestureDetector(
+                  onTap: ()=> Navigator.push(context,
+                      MaterialPageRoute(builder: (context) =>  ShoesPage(title: 'Shoes',))),
+                  child: const Text(
+                    'See all',
+                    style: kSeeAllStyle,
+                  ),
+                ),),
                 SizedBox(
                   height: 180,
                   child:ListView(
@@ -118,7 +135,10 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
 
-                ReusableSeeAll('Most popular'),
+                ReusableSeeAll(leading: 'Most popular', text: const Text(
+                  'See all',
+                  style: kSeeAllStyle,
+                ),),
                 SizedBox(
                   height: 185,
                   child: ListView(

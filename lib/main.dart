@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:happyshop/presentation/discountPage.dart';
+import 'package:happyshop/presentation/subpages/discountPage.dart';
 import 'package:happyshop/services/provider.dart';
 import 'package:provider/provider.dart';
 import '../presentation/main_page.dart';

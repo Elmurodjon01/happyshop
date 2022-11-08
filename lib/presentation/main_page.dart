@@ -5,7 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:happyshop/constants/constants.dart';
 import 'package:happyshop/presentation/accountScreen.dart';
-import 'package:happyshop/presentation/bag_screen.dart';
+import 'package:happyshop/presentation/bagPage/bag_screen.dart';
 import 'package:happyshop/presentation/categoryScreen.dart';
 import 'package:happyshop/presentation/homeScreen.dart';
 import 'package:happyshop/presentation/wishlistScreen.dart';

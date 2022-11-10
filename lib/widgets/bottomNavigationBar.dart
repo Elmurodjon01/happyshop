@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:flutter/material.dart';
 
 import 'package:happyshop/presentation/main_page.dart';
@@ -8,11 +8,7 @@ import 'package:provider/provider.dart';
 import '../constants/constants.dart';
 
 class BottomNavBar extends StatelessWidget {
-  // int newIndex;
-  // BottomNavBar({
-  //   Key? key,
-  //   required this.newIndex,
-  // }) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +37,7 @@ class BottomNavBar extends StatelessWidget {
                   icon: Icon(Icons.favorite_outline_outlined),
                   label: 'Wishlist'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.person), label: 'Account'),
+                  icon: Icon(Icons.person_pin_rounded), label: 'Account'),
             ],
           );
         },

@@ -5,6 +5,7 @@ import 'package:happyshop/presentation/subpages/shoesPage.dart';
 import '../constants/constants.dart';
 import '../widgets/ad_service.dart';
 import '../widgets/discount_ends.dart';
+import '../widgets/itemDetail.dart';
 import '../widgets/itemReusable.dart';
 import '../widgets/reusable_seeall.dart';
 import '../widgets/search_area.dart';
@@ -33,13 +34,24 @@ class HomeScreen extends StatelessWidget {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      ItemReusable(
-                        image:
-                            'https://i.pinimg.com/564x/86/70/15/86701598584a2376858647b302124273.jpg',
-                        label: 'Pull and deer',
-                        style: 'Bear',
-                        price: '\$398.90',
-                        discount: '\$402.00',
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ItemDetail(
+                            imgUrl: 'https://i.pinimg.com/564x/86/70/15/86701598584a2376858647b302124273.jpg',
+                            title: 'Pull and deer',
+                            subtitle: 'Bear',
+                            price: '\$398.90',
+                            discount: '\$402.00',
+                          ),),);
+                        },
+                        child: ItemReusable(
+                          image:
+                              'https://i.pinimg.com/564x/86/70/15/86701598584a2376858647b302124273.jpg',
+                          label: 'Pull and deer',
+                          style: 'Bear',
+                          price: '\$398.90',
+                          discount: '\$402.00',
+                        ),
                       ),
                       ItemReusable(
                           image:

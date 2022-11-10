@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:happyshop/presentation/bagPage/dropDown.dart';
+import 'package:happyshop/services/provider.dart';
+import 'package:provider/provider.dart';
 
 class BagContainer extends StatefulWidget {
   BagContainer({Key? key}) : super(key: key);
@@ -9,18 +11,21 @@ class BagContainer extends StatefulWidget {
 }
 
 class _BagContainerState extends State<BagContainer> {
-  List<String> sizeOfItem = [
+
+  static List<String> quantity = ["1", "2", "3", "4", "5", "6", "7"];
+  static List<String> sizeOfItem = [
     'XS',
     'S',
     'M',
     'L',
   ];
-  List<String> quantity = ["1", "2", "3", "4", "5", "6", "7"];
+  String dropDownValue = sizeOfItem.first;
+  String dropDownValueNum = quantity.first;
+
+
 
   @override
   Widget build(BuildContext context) {
-    String dropDownValue = sizeOfItem.first;
-    String dropDownValueNum = quantity.first;
     return Container(
       color: Colors.white,
       margin: const EdgeInsets.only(bottom: 8),
@@ -78,7 +83,7 @@ class _BagContainerState extends State<BagContainer> {
                               const Text('Quantity'),
                               DropDownBox(
                                   dropDownValue: dropDownValueNum,
-                                  sizeOfItem: quantity),
+                                  sizeOfItem: quantity,),
                             ],
                           ),
                         ],

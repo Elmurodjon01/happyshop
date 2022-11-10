@@ -8,7 +8,7 @@ import 'package:happyshop/presentation/accountScreen.dart';
 import 'package:happyshop/presentation/bagPage/bag_screen.dart';
 import 'package:happyshop/presentation/categoryScreen.dart';
 import 'package:happyshop/presentation/homeScreen.dart';
-import 'package:happyshop/presentation/wishlistScreen.dart';
+import 'package:happyshop/presentation/wishlistpage/wishlistScreen.dart';
 import 'package:happyshop/services/provider.dart';
 import 'package:happyshop/widgets/ad_service.dart';
 import 'package:happyshop/widgets/reusable_seeall.dart';

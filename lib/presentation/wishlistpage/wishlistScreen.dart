@@ -13,10 +13,11 @@ class WishListScreen extends StatelessWidget {
         title: const Text('Wishlist'),
       ),
       body: ListView.builder(
-        itemCount: 1,
-        itemBuilder: (ctx, i){
-        return WishItemContainer();
-      }, ),
+        itemCount: 5,
+        itemBuilder: (ctx, i) {
+          return WishItemContainer();
+        },
+      ),
     );
   }
 }

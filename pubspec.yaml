@@ -41,6 +41,8 @@ dependencies:
   flutter_image_slideshow: ^0.1.4
   firebase_in_app_messaging: ^0.7.0+4
   dropdown_button2: ^1.8.9
+  cloud_firestore: ^4.0.5
+  firebase_core: ^2.2.0
 
 dev_dependencies:
   flutter_test:

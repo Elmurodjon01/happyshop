@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "934172194175",
+    "project_id": "happyshopping-374be",
+    "storage_bucket": "happyshopping-374be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934172194175:android:35046607de3a3795f9964a",
+        "android_client_info": {
+          "package_name": "com.example.happyshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "934172194175-vh509babs6l1r5bqscq3iq349ff6vn61.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACLU-8OUpcliz_akgMpTNS8A1WmEaRROo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "934172194175-vh509babs6l1r5bqscq3iq349ff6vn61.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

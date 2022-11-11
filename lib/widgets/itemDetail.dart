@@ -18,31 +18,49 @@ class ItemDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context)  {
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: (){},
-          icon: Container(
-            height: 34,
-            width: 34,
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(15),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: (){},
+                    icon: Container(
+                      height: 35,
+                      width: 35,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFBDBDBD),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: const Icon(Icons.arrow_back_ios_new, ),),
+                  ),
+                  IconButton(
+                    onPressed: (){},
+                    icon: Container(
+                      height: 35,
+                      width: 35,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFBDBDBD),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: const Icon(Icons.shopping_bag,),),
+                  ),
+
+                ],
+              ),
             ),
-            child: const Icon(Icons.arrow_back_ios_new),),
+            SizedBox(
+              height: height * 0.7,
+              child: Image.network('https://images.unsplash.com/photo-1526470498-9ae73c665de8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1396&q=80',
+              fit: BoxFit.cover,),
+            ),
+          ],
         ),
-        actions: [
-          Container(
-            height: 34,
-            width: 34,
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: const Icon(Icons.shopping_bag),),
-        ],
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:happyshop/presentation/subpages/promotionPage.dart';
 import 'package:happyshop/presentation/subpages/shoesPage.dart';
@@ -5,11 +6,11 @@ import 'package:happyshop/presentation/subpages/shoesPage.dart';
 import '../constants/constants.dart';
 import '../widgets/ad_service.dart';
 import '../widgets/discount_ends.dart';
-import '../widgets/itemDetail.dart';
 import '../widgets/itemReusable.dart';
 import '../widgets/reusable_seeall.dart';
 import '../widgets/search_area.dart';
 import '../widgets/upcomingPromotion.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -31,55 +32,33 @@ class HomeScreen extends StatelessWidget {
                 DiscountLine('See all'),
                 SizedBox(
                   height: 180,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ItemDetail(
-                            imgUrl: 'https://i.pinimg.com/564x/86/70/15/86701598584a2376858647b302124273.jpg',
-                            title: 'Pull and deer',
-                            subtitle: 'Bear',
-                            price: '\$398.90',
-                            discount: '\$402.00',
-                          ),),);
-                        },
-                        child: ItemReusable(
-                          image:
-                              'https://i.pinimg.com/564x/86/70/15/86701598584a2376858647b302124273.jpg',
-                          label: 'Pull and deer',
-                          style: 'Bear',
-                          price: '\$398.90',
-                          discount: '\$402.00',
-                        ),
-                      ),
-                      ItemReusable(
-                          image:
-                              'https://i.pinimg.com/564x/86/70/15/86701598584a2376858647b302124273.jpg',
-                          label: 'Pull and deer',
-                          style: 'Bear',
-                          price: '\$398.90',
-                          discount: '\$402.00',
-                        ),
+                  child: StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance.collection('discounts').snapshots(),
+                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      }
+                      switch (snapshot.connectionState) {
+                        case ConnectionState.waiting:
+                          return Text('loading');
+                        default:
+                          return ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                              return ItemReusable(
+                                discount: document.get('discount'),
+                                image: document.get('imageUrl'),
+                                  label: document.get('label'),
+                                  price: document.get('price'),
+                                  style: document.get('style'),
 
-                      ItemReusable(
-                        image:
-                            'https://i.pinimg.com/564x/86/70/15/86701598584a2376858647b302124273.jpg',
-                        label: 'Pull and deer',
-                        style: 'Bear',
-                        price: '\$398.90',
-                        discount: '\$402.00',
-                      ),
-                      ItemReusable(
-                        image:
-                            'https://i.pinimg.com/564x/86/70/15/86701598584a2376858647b302124273.jpg',
-                        label: 'Pull and deer',
-                        style: 'Bear',
-                        price: '\$398.90',
-                        discount: '\$402.00',
-                      ),
-                    ],
-                  ),
+                              );
+                            }).toList(),
+                          );
+                      }
+                    }
+    ),
+
 
                   ),
                 ReusableSeeAll(leading: 'Upcoming promotion',text: GestureDetector(
@@ -197,3 +176,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+

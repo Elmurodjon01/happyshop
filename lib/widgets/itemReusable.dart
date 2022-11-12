@@ -49,9 +49,11 @@ class ItemReusable extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        label,
-                        style: const TextStyle(fontSize: 14, overflow: TextOverflow.clip),
+                      Flexible(
+                        child: Text(
+                          label,
+                          style: const TextStyle(fontSize: 14, overflow: TextOverflow.ellipsis),
+                        ),
                       ),
                      const Icon(Icons.favorite_border, color: kbottomNavColor,),
                     ],

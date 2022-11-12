@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class PromotionItem extends StatelessWidget {
+  String imageUrl;
   double? height = 80;
   double? width = 170;
   PromotionItem({
+    required this.imageUrl,
     this.height = 80,
     this.width = 170,
 });
@@ -16,9 +18,9 @@ class PromotionItem extends StatelessWidget {
       width: width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        image: const DecorationImage(
+        image:  DecorationImage(
           image: NetworkImage(
-            'https://marketplace.canva.com/EAE9Qi6XWqg/1/0/1131w/canva-orange-cream-modern-special-discount-pdH-vZO6N_A.jpg',
+            imageUrl,
           ),
           fit: BoxFit.cover,
         ),

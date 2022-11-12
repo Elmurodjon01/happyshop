@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:happyshop/presentation/subpages/promotionPage.dart';
 import 'package:happyshop/presentation/subpages/shoesPage.dart';
+import 'package:happyshop/widgets/itemDetail.dart';
 
 import '../constants/constants.dart';
 import '../widgets/ad_service.dart';
@@ -10,7 +11,6 @@ import '../widgets/itemReusable.dart';
 import '../widgets/reusable_seeall.dart';
 import '../widgets/search_area.dart';
 import '../widgets/upcomingPromotion.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -45,13 +45,16 @@ class HomeScreen extends StatelessWidget {
                           return ListView(
                             scrollDirection: Axis.horizontal,
                             children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                              return ItemReusable(
-                                discount: document.get('discount'),
-                                image: document.get('imageUrl'),
-                                  label: document.get('label'),
-                                  price: document.get('price'),
-                                  style: document.get('style'),
+                              return GestureDetector(
+                                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ItemDetail())),
+                                child: ItemReusable(
+                                  discount: document.get('discount'),
+                                  image: document.get('imageUrl'),
+                                    label: document.get('label'),
+                                    price: document.get('price'),
+                                    style: document.get('style'),
 
+                                ),
                               );
                             }).toList(),
                           );
@@ -71,15 +74,34 @@ class HomeScreen extends StatelessWidget {
                 ),),
                 SizedBox(
                   height: 85,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children:  [
-                      PromotionItem(),
-                      PromotionItem(),
-                      PromotionItem(),
-                      PromotionItem(),
-                    ],
+                  child: StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance.collection('promotions').snapshots(),
+                      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        }
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.waiting:
+                            return Text('loading');
+                          default:
+                            return ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                                return PromotionItem(imageUrl: document.get('imageUrl'),);
+                              }).toList(),
+                            );
+                        }
+                      }
                   ),
+                  // child: ListView(
+                  //   scrollDirection: Axis.horizontal,
+                  //   children:  [
+                  //     PromotionItem(imageUrl: ,),
+                  //     PromotionItem(),
+                  //     PromotionItem(),
+                  //     PromotionItem(),
+                  //   ],
+                  // ),
                 ),
                 ReusableSeeAll(leading: 'New in Shoes', text: GestureDetector(
                   onTap: ()=> Navigator.push(context,

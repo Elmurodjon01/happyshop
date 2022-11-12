@@ -1,18 +1,26 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:happyshop/constants/constants.dart';
 import 'package:happyshop/presentation/subpages/discountPage.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 
-class DiscountLine extends StatelessWidget {
+class DiscountLine extends StatefulWidget {
   String? seeAll;
   DiscountLine(this.seeAll);
+
+  @override
+  State<DiscountLine> createState() => _DiscountLineState();
+}
+
+class _DiscountLineState extends State<DiscountLine> {
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Row( 
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
@@ -29,7 +37,7 @@ class DiscountLine extends StatelessWidget {
                   color: kbottomNavColor,
                   borderRadius: BorderRadius.circular(7),
                 ),
-                duration: const Duration(days: 1),
+                duration:  const Duration(days: 1),
                 countUp: false,
               ),
             ],
@@ -42,7 +50,7 @@ class DiscountLine extends StatelessWidget {
               onTap: () => Navigator.push(context,
                   MaterialPageRoute(builder: (context) => DiscountScreen())),
               child: Text(
-                seeAll ?? '',
+                widget.seeAll ?? '',
                 style: kSeeAllStyle,
               ),
             ),

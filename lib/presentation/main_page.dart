@@ -26,7 +26,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final ScrollController _scrollController = ScrollController();
   final List screens = const [
     HomeScreen(),
     CategoryScreen(),

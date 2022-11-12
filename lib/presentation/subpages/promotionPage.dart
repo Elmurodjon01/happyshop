@@ -34,22 +34,22 @@ PromotionPage({required this.title});
         mainAxisSpacing: 10,
         crossAxisCount: 2,
         children: [
-         PromotionItem(
-           height: 110,
-           width: width * 0.3,
-         ),
-          PromotionItem(
-            height: 110,
-            width: width * 0.3,
-          ),
-          PromotionItem(
-            height: 110,
-            width: width * 0.3,
-          ),
-          PromotionItem(
-            height: 110,
-            width: width * 0.3,
-          ),
+         // PromotionItem(
+         //   height: 110,
+         //   width: width * 0.3,
+         // ),
+         //  PromotionItem(
+         //    height: 110,
+         //    width: width * 0.3,
+         //  ),
+         //  PromotionItem(
+         //    height: 110,
+         //    width: width * 0.3,
+         //  ),
+         //  PromotionItem(
+         //    height: 110,
+         //    width: width * 0.3,
+         //  ),
 
 
         ],

@@ -40,13 +40,15 @@ class HomeScreen extends StatelessWidget {
                       }
                       switch (snapshot.connectionState) {
                         case ConnectionState.waiting:
-                          return Text('loading');
+                          return const Text('loading');
                         default:
                           return ListView(
                             scrollDirection: Axis.horizontal,
                             children: snapshot.data!.docs.map((DocumentSnapshot document) {
                               return GestureDetector(
-                                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ItemDetail())),
+                                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                  return ItemDetail();
+                                })),
                                 child: ItemReusable(
                                   discount: document.get('discount'),
                                   image: document.get('imageUrl'),

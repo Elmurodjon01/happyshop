@@ -28,9 +28,12 @@ class SearchArea extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          margin: const EdgeInsets.only(left: 20),
-          child: Image.asset('assets/icons/notify.jpeg'),
+        GestureDetector(
+          onTap: () => Navigator.of(context).pushNamed('/notificationScreen'),
+          child: Container(
+            margin: const EdgeInsets.only(left: 20),
+            child: Image.asset('assets/icons/notify.jpeg'),
+          ),
         ),
       ],
     );

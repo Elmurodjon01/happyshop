@@ -1,22 +1,29 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:happyshop/constants/constants.dart';
+import 'package:happyshop/model/itemDetailModel.dart';
 import 'package:happyshop/presentation/bagPage/bag_screen.dart';
 
-class ItemDetail extends StatelessWidget {
-  // String imgUrl;
-  // String title;
-  // String subtitle;
-  // String price;
-  // String? discount;
-  // bool isFavourite = false;
-  // ItemDetail({
-  //   required this.imgUrl,
-  //   required this.title,
-  //   required this.subtitle,
-  //   required this.price,
-  //   this.isFavourite = false,
-  //   this.discount,
-  // });
+class ItemDetail extends StatefulWidget {
+
+  @override
+  State<ItemDetail> createState() => _ItemDetailState();
+}
+
+class _ItemDetailState extends State<ItemDetail> {
+List<Object> itemSpecs = [];
+late ItemDetailModel itemDetailModel;
+@override
+void didChangeDependencies(){
+  super.didChangeDependencies();
+  getItemSpecs();
+}
+@override
+  void initState() {
+    getItemSpecs();
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context)  {
@@ -65,26 +72,27 @@ class ItemDetail extends StatelessWidget {
             ),
             SizedBox(
               height: height * 0.7,
-              child: Image.network('https://images.unsplash.com/photo-1526470498-9ae73c665de8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1396&q=80',
-              fit: BoxFit.cover,),
+              width: double.infinity,
+              child: Image.network('itemSpecs.ge',
+                fit: BoxFit.cover,),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   const Text('Label here', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),),
+                  Text("mainData.title", style:const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),),
                   const SizedBox(height: 3,),
-                  const Text('A bit detail of item', style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),),
+                  Text("mainData.subtitle", style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 16),),
                   const SizedBox(height: 8,),
                   Row(
-                    children:const [
-                      Text('\$219.00',style: TextStyle(color: kbottomNavColor, fontWeight: FontWeight.w400, fontSize: 13),),
-                      SizedBox(width: 6,),
-                      Text('\$319.00' ?? '',style: TextStyle(color: Color(0xFF777777), fontWeight: FontWeight.w400, fontSize: 10, decoration: TextDecoration.lineThrough,),),
+                    children: [
+                      Text("mainData.price",style: const TextStyle(color: kbottomNavColor, fontWeight: FontWeight.w400, fontSize: 13),),
+                      const SizedBox(width: 6,),
+                      Text("mainData.discount" ?? '',style: const TextStyle(color: Color(0xFF777777), fontWeight: FontWeight.w400, fontSize: 10, decoration: TextDecoration.lineThrough,),),
                     ],
                   ),
-                   SizedBox(height: height * 0.02,),
+                  SizedBox(height: height * 0.02,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -119,4 +127,14 @@ class ItemDetail extends StatelessWidget {
       ),
     );
   }
+
+  Future getItemSpecs() async {
+var data = await FirebaseFirestore.instance.collection('discounts').doc('1stFIvf7yfF52vJC90F9').collection('itemDetail').get();
+setState(() {
+  itemSpecs = List.from(data.docs.map((document) => ItemDetailModel.fromSnapshot(document)));
+  print(itemSpecs.length);
+});
+  }
 }
+
+

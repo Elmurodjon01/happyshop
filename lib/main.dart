@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:happyshop/presentation/SignLogin/signInPage.dart';
+import 'package:happyshop/presentation/main_page.dart';
 import 'package:happyshop/presentation/subpages/discountPage.dart';
 import 'package:happyshop/services/provider.dart';
 import 'package:happyshop/services/signLogProvider.dart';
@@ -35,19 +37,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider(create: (context) => SMProvider()),
-        Provider(create: (context) => SignInLogic()),
+        ChangeNotifierProvider(create: (context) => SMProvider()),
+        ChangeNotifierProvider(create: (context) => SignInLogic()),
       ],
-      child: MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+      child: FirebasePhoneAuthProvider(
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          initialRoute: '/',
+          routes: {
+            '/': (context) => SignInScreen(),
+            'mainScreen': (context) => MainPage(),
+            '/discountScreen': (context) => const DiscountScreen(),
+            '/notificationScreen': (context) => NotificationScreen(),
+          },
         ),
-        initialRoute: '/',
-        routes: {
-          '/': ((context) => SignInScreen()),
-          '/discountScreen': (context) => const DiscountScreen(),
-          '/notificationScreen': (context) => NotificationScreen(),
-        },
       ),
     );
   }

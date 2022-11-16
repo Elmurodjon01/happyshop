@@ -21,6 +21,7 @@ import '../widgets/discount_ends.dart';
 import '../widgets/itemReusable.dart';
 
 class MainPage extends StatefulWidget {
+  static String id = 'mainPage';
   @override
   State<MainPage> createState() => _MainPageState();
 }
@@ -36,11 +37,11 @@ class _MainPageState extends State<MainPage> {
   SMProvider smprovider = SMProvider();
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<SMProvider>(context);
+    final index = Provider.of<SMProvider>(context, listen: false);
     return Consumer(
       builder: (context, value, child) {
         return Scaffold(
-          body: screens[provider.initialIndex],
+          body: screens[index.initialIndex],
           bottomNavigationBar: BottomNavBar(),
         );
       },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:happyshop/presentation/SignLogin/verifyPage.dart';
 import 'package:hive/hive.dart';
 
 import 'parts.dart';
@@ -11,7 +12,6 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   @override
   final nameController = TextEditingController();
-
   final passController = TextEditingController();
   void initState() {
     nameController;
@@ -55,7 +55,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   Parts.reusableTextField(
                     nameController,
-                    'User Name',
+                    'Phone number',
                     Icons.person_outline,
                     false,
                   ),
@@ -121,16 +121,25 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void _doLogin() {
+    var box = Hive.box('personalInfo');
     String username = nameController.text.toString().trim();
     String password = passController.text.toString().trim();
-
-    var box = Hive.box('test_database');
-
     box.put('username', username);
     box.put('password', password);
     String id = box.get('username');
     String pw = box.get('password');
     print(id);
     print(pw);
+    _verifyPhoneNumber();
+  }
+
+  void _verifyPhoneNumber() async {
+    String phoneNumber = nameController.text.toString().trim();
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => VerifyScreen(phoneNumber: phoneNumber),
+      ),
+    );
   }
 }

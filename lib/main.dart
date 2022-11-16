@@ -5,8 +5,8 @@ import 'package:happyshop/presentation/SignLogin/signInPage.dart';
 import 'package:happyshop/presentation/subpages/discountPage.dart';
 import 'package:happyshop/services/provider.dart';
 import 'package:happyshop/services/signLogProvider.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
-import '../presentation/main_page.dart';
 import 'presentation/notificationPage.dart';
 
 void main() async {
@@ -17,9 +17,17 @@ void main() async {
     ),
   );
   WidgetsFlutterBinding.ensureInitialized();
+  // Box box = await Hive.openBox('testBox');
   await Firebase.initializeApp();
+  await Hive.initFlutter();
+  await Hive.openBox('personalInfo');
   runApp(const MyApp());
 }
+
+// void init() async {
+//   final dir = await getApplicationDocumentsDirectory();
+//   Hive.init(dir.path);
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -44,4 +52,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-//MainPage

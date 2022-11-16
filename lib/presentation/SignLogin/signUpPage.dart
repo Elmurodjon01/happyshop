@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../model/userModel/accountModel.dart';
+import '../../services/personalInfo.dart';
 import 'parts.dart';
 
-class SingUpScreen extends StatefulWidget {
-  const SingUpScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SingUpScreen> createState() => _SingUpScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
 final _nameController = TextEditingController();
@@ -14,7 +16,7 @@ final _emailController = TextEditingController();
 final _phoneController = TextEditingController();
 final _passController = TextEditingController();
 
-class _SingUpScreenState extends State<SingUpScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +41,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     _nameController,
                     'User Name',
                     Icons.person_outline,
+                    false,
                   ),
                   const SizedBox(
                     height: 13,
@@ -47,6 +50,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     _emailController,
                     'E-mail',
                     Icons.email_outlined,
+                    false,
                   ),
                   const SizedBox(
                     height: 13,
@@ -55,6 +59,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     _phoneController,
                     'Phone Number',
                     Icons.phone_enabled_outlined,
+                    false,
                   ),
                   const SizedBox(
                     height: 13,
@@ -63,6 +68,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     _passController,
                     'Password',
                     Icons.lock_outline,
+                    true,
                   ),
                   const SizedBox(
                     height: 40,
@@ -136,12 +142,13 @@ class _SingUpScreenState extends State<SingUpScreen> {
     String email = _emailController.text.toString().trim();
     String phone = _phoneController.text.toString().trim();
     String pass = _passController.text.toString().trim();
-    // Account account = Account(username: name, password: pass, email: email, phone: phone);
-    // HiveDB().storeAccount(account);
-    // var account2 = HiveDB().loadAccount();
-    // print(account2.username);
-    // print(account2.email);
-    // print(account2.phone);
-    // print(account2.password);
+    Account account =
+        Account(username: name, password: pass, email: email, phone: phone);
+    HiveDB().storeAccount(account);
+    var account2 = HiveDB().loadAccount();
+    print(account2.username);
+    print(account2.email);
+    print(account2.phone);
+    print(account2.password);
   }
 }

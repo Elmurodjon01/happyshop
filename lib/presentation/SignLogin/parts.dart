@@ -1,3 +1,5 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
 
 import 'signUpPage.dart';
@@ -48,8 +50,10 @@ class Parts {
     TextEditingController controllerOne,
     String label,
     IconData icon,
+    bool isObscure,
   ) {
     return TextField(
+      obscureText: isObscure,
       style: const TextStyle(color: Colors.white70),
       controller: controllerOne,
       decoration: InputDecoration(
@@ -91,7 +95,7 @@ class Parts {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SingUpScreen(),
+                builder: (context) => const SignUpScreen(),
               ),
             );
           },

@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 import 'parts.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
   @override
   final nameController = TextEditingController();
+
   final passController = TextEditingController();
-  // void initState() {
-  //   nameController;
-  //   passController;
-  //
-  //   super.initState();
-  // }
-  //@override
-  // void dispose() {
-  //   nameController.dispose();
-  //   passController.dispose();
-  //   super.dispose();
-  // }
+  void initState() {
+    nameController;
+    passController;
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    passController.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF03032b),
@@ -48,6 +57,7 @@ class SignInScreen extends StatelessWidget {
                     nameController,
                     'User Name',
                     Icons.person_outline,
+                    false,
                   ),
                   const SizedBox(
                     height: 10,
@@ -56,6 +66,7 @@ class SignInScreen extends StatelessWidget {
                     passController,
                     'Password',
                     Icons.lock_outline,
+                    true,
                   ),
                   const SizedBox(
                     height: 20,
@@ -113,13 +124,13 @@ class SignInScreen extends StatelessWidget {
     String username = nameController.text.toString().trim();
     String password = passController.text.toString().trim();
 
-    // var box = Hive.box('test_database');
+    var box = Hive.box('test_database');
 
-    // box.put('username', username);
-    // box.put('password', password);
-    // String id = box.get('username');
-    // String pw = box.get('password');
-    // print(id);
-    // print(pw);
+    box.put('username', username);
+    box.put('password', password);
+    String id = box.get('username');
+    String pw = box.get('password');
+    print(id);
+    print(pw);
   }
 }

@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:happyshop/presentation/subpages/mostPopularspage.dart';
 import 'package:happyshop/presentation/subpages/promotionPage.dart';
 import 'package:happyshop/presentation/subpages/shoesPage.dart';
 import 'package:happyshop/widgets/itemDetail.dart';
+import 'package:happyshop/widgets/productDetail.dart';
 
 import '../constants/constants.dart';
 import '../widgets/ad_service.dart';
@@ -33,165 +35,176 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: 180,
                   child: StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance.collection('discounts').snapshots(),
-                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
-                      }
-                      switch (snapshot.connectionState) {
-                        case ConnectionState.waiting:
-                          return const Text('loading');
-                        default:
-                          return ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                              return GestureDetector(
-                                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                  return ItemDetail();
-                                })),
-                                child: ItemReusable(
-                                  discount: document.get('discount'),
-                                  image: document.get('imageUrl'),
-                                    label: document.get('label'),
-                                    price: document.get('price'),
-                                    style: document.get('style'),
-
-                                ),
-                              );
-                            }).toList(),
-                          );
-                      }
-                    }
-    ),
-
-
-                  ),
-                ReusableSeeAll(leading: 'Upcoming promotion',text: GestureDetector(
-                  onTap: ()=> Navigator.push(context,
-                      MaterialPageRoute(builder: (context) =>  PromotionPage(title: 'Promotions',))),
-                  child: const Text(
-                    'See all',
-                    style: kSeeAllStyle,
-                  ),
-                ),),
-                SizedBox(
-                  height: 85,
-                  child: StreamBuilder<QuerySnapshot>(
-                      stream: FirebaseFirestore.instance.collection('promotions').snapshots(),
-                      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      stream: FirebaseFirestore.instance
+                          .collection('discounts')
+                          .snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
                         if (snapshot.hasError) {
                           return Text('Error: ${snapshot.error}');
                         }
                         switch (snapshot.connectionState) {
                           case ConnectionState.waiting:
-                            return Text('loading');
+                            return const Text('loading');
                           default:
                             return ListView(
                               scrollDirection: Axis.horizontal,
-                              children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                                return PromotionItem(imageUrl: document.get('imageUrl'),);
+                              children: snapshot.data!.docs
+                                  .map((DocumentSnapshot document) {
+                                return GestureDetector(
+                                  onTap: () => Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return ItemDetail();
+                                  })),
+                                  child: ItemReusable(
+                                    onTap: (){},
+                                    discount: document.get('discount'),
+                                    image: document.get('imageUrl'),
+                                    label: document.get('label'),
+                                    price: document.get('price'),
+                                    style: document.get('style'),
+                                  ),
+                                );
                               }).toList(),
                             );
                         }
-                      }
-                  ),
-                  // child: ListView(
-                  //   scrollDirection: Axis.horizontal,
-                  //   children:  [
-                  //     PromotionItem(imageUrl: ,),
-                  //     PromotionItem(),
-                  //     PromotionItem(),
-                  //     PromotionItem(),
-                  //   ],
-                  // ),
+                      }),
                 ),
-                ReusableSeeAll(leading: 'New in Shoes', text: GestureDetector(
-                  onTap: ()=> Navigator.push(context,
-                      MaterialPageRoute(builder: (context) =>  ShoesPage(title: 'Shoes',))),
-                  child: const Text(
-                    'See all',
-                    style: kSeeAllStyle,
-                  ),
-                ),),
-                SizedBox(
-                  height: 180,
-                  child:ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/564x/d5/57/61/d5576189e807ec200a3e610ac1109411.jpg',
-                          label: 'Nike',
-                          style: 'classic',
-                          price: '\$258.00',
-                        ),
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/564x/d5/57/61/d5576189e807ec200a3e610ac1109411.jpg',
-                          label: 'Nike',
-                          style: 'classic',
-                          price: '\$258.00',
-                        ),
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/564x/d5/57/61/d5576189e807ec200a3e610ac1109411.jpg',
-                          label: 'Nike',
-                          style: 'classic',
-                          price: '\$258.00',
-                        ),
-                        ItemReusable(
-                          image:
-                              'https://i.pinimg.com/564x/d5/57/61/d5576189e807ec200a3e610ac1109411.jpg',
-                          label: 'Nike',
-                          style: 'classic',
-                          price: '\$258.00',
-                        ),
-                      ],
+                ReusableSeeAll(
+                  leading: 'Upcoming promotion',
+                  text: GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PromotionPage(
+                                  title: 'Promotions',
+                                ))),
+                    child: const Text(
+                      'See all',
+                      style: kSeeAllStyle,
                     ),
                   ),
-
-                ReusableSeeAll(leading: 'Most popular', text: const Text(
-                  'See all',
-                  style: kSeeAllStyle,
-                ),),
+                ),
                 SizedBox(
-                  height: 185,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      ItemReusable(
-                        image:
-                            'https://i.pinimg.com/736x/93/c0/ba/93c0ba091e9682cdc5be60883e0ba4d8.jpg',
-                        label: 'Aventus',
-                        style: 'for man',
-                        price: '\$127.00',
-                      ),
-                      ItemReusable(
-                        image:
-                            'https://i.pinimg.com/736x/93/c0/ba/93c0ba091e9682cdc5be60883e0ba4d8.jpg',
-                        label: 'Aventus',
-                        style: 'for man',
-                        price: '\$127.00',
-                      ),
-                      ItemReusable(
-                        image:
-                            'https://i.pinimg.com/736x/93/c0/ba/93c0ba091e9682cdc5be60883e0ba4d8.jpg',
-                        label: 'Aventus',
-                        style: 'for man',
-                        price: '\$127.00',
-                      ),
-                      ItemReusable(
-
-                        image:
-                            'https://i.pinimg.com/736x/93/c0/ba/93c0ba091e9682cdc5be60883e0ba4d8.jpg',
-                        label: 'Aventus',
-                        style: 'for man',
-                        price: '\$127.00',
-                      ),
-                    ],
+                  height: 85,
+                  child: StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection('promotions')
+                          .snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        }
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.waiting:
+                            return const Text('loading');
+                          default:
+                            return ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: snapshot.data!.docs
+                                  .map((DocumentSnapshot document) {
+                                return PromotionItem(
+                                  imageUrl: document.get('imageUrl'),
+                                );
+                              }).toList(),
+                            );
+                        }
+                      }),
+                ),
+                ReusableSeeAll(
+                  leading: 'New in Shoes',
+                  text: GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ShoesPage(
+                                  title: 'Shoes',
+                                ))),
+                    child: const Text(
+                      'See all',
+                      style: kSeeAllStyle,
+                    ),
                   ),
                 ),
+                SizedBox(
+                  height: 180,
+                  child: StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection('shoes')
+                          .snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        }
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.waiting:
+                            return const Text('loading');
+                          default:
+                            return ListView(
+                              scrollDirection: Axis.horizontal,
+                              children:
+                              snapshot.data!.docs.map((DocumentSnapshot d) {
+                                return ItemReusable(
+                                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) =>ProductDetail())),
+                                  label: d.get('label'),
+                                  price: d.get('price'),
+                                  style: d.get('style'),
+                                  image: d.get('imageUrl'),
+                                );
+                              }).toList(),
+                            );
+                        }
+                      }),
+                ),
+                ReusableSeeAll(
+                  leading: 'Most popular',
+                  text: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              MostPopulars(title: 'Most populars')),
 
+                      );
+                    },
+                    child: const Text(
+                      'See all',
+                      style: kSeeAllStyle,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 185,
+                  child: StreamBuilder<QuerySnapshot>(
+                      stream: FirebaseFirestore.instance
+                          .collection('mostPopular')
+                          .snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        }
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.waiting:
+                            return const Text('loading');
+                          default:
+                            return ListView(
+                              scrollDirection: Axis.horizontal,
+                              children:
+                                  snapshot.data!.docs.map((DocumentSnapshot d) {
+                                return ItemReusable(
+                                  onTap: (){},
+                                  label: d.get('label'),
+                                  price: d.get('price'),
+                                  style: d.get('whom'),
+                                  image: d.get('imageUrl'),
+                                );
+                              }).toList(),
+                            );
+                        }
+                      }),
+                ),
               ],
             ),
           ),
@@ -200,4 +213,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

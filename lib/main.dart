@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:happyshop/appLogic/firebaseDB.dart';
 import 'package:happyshop/presentation/SignLogin/signInPage.dart';
 import 'package:happyshop/presentation/homeScreen.dart';
 import 'package:happyshop/presentation/main_page.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => SMProvider()),
         ChangeNotifierProvider(create: (context) => SignInLogic()),
+        ChangeNotifierProvider(create: (context) => MyDataProvider()),
       ],
       child: FirebasePhoneAuthProvider(
         child: MaterialApp(

@@ -34,6 +34,7 @@ class ShoesPage extends StatelessWidget {
         crossAxisCount: 2,
         children: [
           ItemReusable(
+            onTap: (){},
             height: 110,
             width: width * 0.3,
             image:
@@ -43,6 +44,7 @@ class ShoesPage extends StatelessWidget {
             price: '\$258.00',
           ),
           ItemReusable(
+            onTap: (){},
             height: 110,
             width: width * 0.3,
             image:
@@ -52,6 +54,7 @@ class ShoesPage extends StatelessWidget {
             price: '\$258.00',
           ),
           ItemReusable(
+            onTap: (){},
             height: 110,
             width: width * 0.3,
             image:
@@ -61,6 +64,7 @@ class ShoesPage extends StatelessWidget {
             price: '\$258.00',
           ),
           ItemReusable(
+            onTap: (){},
             height: 110,
             width: width * 0.3,
             image:

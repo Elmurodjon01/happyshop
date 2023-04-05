@@ -46,7 +46,7 @@ class DiscountScreen extends StatelessWidget {
                   mainAxisSpacing: 10,
                   crossAxisCount: 2,
                   children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                    return ItemReusable(label: document.get('label'), price: document.get('price'), style: document.get('style'), image: document.get('imageUrl'));
+                    return ItemReusable(onTap: (){}, label: document.get('label'), price: document.get('price'), style: document.get('style'), image: document.get('imageUrl'));
                   }).toList(),
                 );
             }

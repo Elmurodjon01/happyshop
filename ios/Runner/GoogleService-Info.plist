@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>934172194175-r4luj8jpttiu1mo8o94oqi9oqo8hgnto.apps.googleusercontent.com</string>
+	<string>156941334405-9jg0gcnb6mo15ajo20memh692vb4skd4.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.934172194175-r4luj8jpttiu1mo8o94oqi9oqo8hgnto</string>
+	<string>com.googleusercontent.apps.156941334405-9jg0gcnb6mo15ajo20memh692vb4skd4</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDiQtru2gee4ddAljc5wsF5DxoHV_ZNHZk</string>
+	<string>AIzaSyBbzSixKkaVtar5c-Iw76-qrlxbgRnZjNw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>934172194175</string>
+	<string>156941334405</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.happyshop</string>
 	<key>PROJECT_ID</key>
-	<string>happyshopping-374be</string>
+	<string>happyshop-5cc1c</string>
 	<key>STORAGE_BUCKET</key>
-	<string>happyshopping-374be.appspot.com</string>
+	<string>happyshop-5cc1c.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:934172194175:ios:ee854a04e0fefbebf9964a</string>
+	<string>1:156941334405:ios:91c3849e186178d7d476ec</string>
 </dict>
 </plist>

@@ -4,12 +4,13 @@ import 'package:happyshop/presentation/subpages/mostPopularspage.dart';
 import 'package:happyshop/presentation/subpages/promotionPage.dart';
 import 'package:happyshop/presentation/subpages/shoesPage.dart';
 import 'package:happyshop/widgets/itemDetail.dart';
-import 'package:happyshop/widgets/productDetail.dart';
 
+import '../appLogic/firebaseDB.dart';
 import '../constants/constants.dart';
 import '../widgets/ad_service.dart';
 import '../widgets/discount_ends.dart';
 import '../widgets/itemReusable.dart';
+import '../widgets/productDetail.dart';
 import '../widgets/reusable_seeall.dart';
 import '../widgets/search_area.dart';
 import '../widgets/upcomingPromotion.dart';
@@ -51,19 +52,18 @@ class HomeScreen extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               children: snapshot.data!.docs
                                   .map((DocumentSnapshot document) {
-                                return GestureDetector(
-                                  onTap: () => Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return ItemDetail();
-                                  })),
-                                  child: ItemReusable(
-                                    onTap: (){},
-                                    discount: document.get('discount'),
-                                    image: document.get('imageUrl'),
-                                    label: document.get('label'),
-                                    price: document.get('price'),
-                                    style: document.get('style'),
-                                  ),
+                                var outcome = ProductModel(imageUrl1: document.get('imageUrl'), label: document.get('label'), price: document.get('price'), style: document.get('style'),
+                                    itemDetail: document.get('detail'), discount:  document.get('discount'), rating: document.get('rating'), imageUrl2: document.get('imageUrl1'), imageUrl3: document.get('imageUrl2'));
+                                return ItemReusable(
+                                  onTap: (){
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductDetail(label: outcome.label,
+                                        imageurl:outcome.imageUrl1 , imageUrl1: outcome.imageUrl2!, imageUrl2: outcome.imageUrl3!, rating: outcome.rating!, price: outcome.price, detail: outcome.itemDetail!)));
+                                  },
+                                  discount: document.get('discount'),
+                                  image: document.get('imageUrl'),
+                                  label: document.get('label'),
+                                  price: document.get('price'),
+                                  style: document.get('style'),
                                 );
                               }).toList(),
                             );
@@ -147,7 +147,8 @@ class HomeScreen extends StatelessWidget {
                               children:
                               snapshot.data!.docs.map((DocumentSnapshot d) {
                                 return ItemReusable(
-                                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) =>ProductDetail())),
+                                  onTap: (){},
+                                  // onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) =>ProductDetail())),
                                   label: d.get('label'),
                                   price: d.get('price'),
                                   style: d.get('style'),

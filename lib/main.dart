@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => SMProvider()),
         ChangeNotifierProvider(create: (context) => SignInLogic()),
-        ChangeNotifierProvider(create: (context) => MyDataProvider()),
+        // ChangeNotifierProvider(create: (context) => MyDataProvider()),
       ],
       child: FirebasePhoneAuthProvider(
         child: MaterialApp(

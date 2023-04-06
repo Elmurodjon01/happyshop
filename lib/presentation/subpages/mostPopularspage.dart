@@ -28,51 +28,35 @@ class MostPopulars extends StatelessWidget {
           ),
         ),
       ),
-      body: Consumer<MyDataProvider>(
-  builder: (context, provider, child) {
-  if (provider.pDetail.isEmpty){
-    provider.fetchData();
-    return const CircularProgressIndicator();
-  } 
-  return ListView.builder(
-    itemCount: provider.pDetail.length,
-      itemBuilder: (BuildContext context, int index){
-      final data = provider.pDetail[index];
-    return ListTile(
-      leading: Text(data.label),
-      subtitle: Text(data.price),
-    );
-  });
-  },
-),
-      // body: StreamBuilder<QuerySnapshot>(
-      //     stream:
-      //     FirebaseFirestore.instance.collection('mostPopular').snapshots(),
-      //     builder:
-      //         (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-      //       if (snapshot.hasError) {
-      //         return Text('Error: ${snapshot.error}');
-      //       }
-      //       switch (snapshot.connectionState) {
-      //         case ConnectionState.waiting:
-      //           return const Text('loading');
-      //         default:
-      //           return GridView.count(
-      //             primary: false,
-      //             padding: const EdgeInsets.all(10),
-      //             crossAxisSpacing: 10,
-      //             mainAxisSpacing: 10,
-      //             crossAxisCount: 2,
-      //             children:
-      //             snapshot.data!.docs.map((DocumentSnapshot document) {
-      //               return ItemReusable( onTap:(){
-      //               
-      //               }, 
-      //                   label: document.get('label'), price: document.get('price'), style: document.get('whom'), image: document.get('imageUrl'));
-      //             }).toList(),
-      //           );
-      //       }
-      //     }),
+
+      body: StreamBuilder<QuerySnapshot>(
+          stream:
+          FirebaseFirestore.instance.collection('mostPopular').snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            }
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return const Text('loading');
+              default:
+                return GridView.count(
+                  primary: false,
+                  padding: const EdgeInsets.all(10),
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  crossAxisCount: 2,
+                  children:
+                  snapshot.data!.docs.map((DocumentSnapshot document) {
+                    return ItemReusable( onTap:(){
+
+                    },
+                        label: document.get('label'), price: document.get('price'), style: document.get('whom'), image: document.get('imageUrl'));
+                  }).toList(),
+                );
+            }
+          }),
     );
   }
 }

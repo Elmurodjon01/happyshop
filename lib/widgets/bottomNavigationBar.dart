@@ -12,7 +12,7 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SMProvider smProvider = SMProvider();
+
     final provider = Provider.of<SMProvider>(context);
     return Theme(
       data: Theme.of(context).copyWith(
@@ -23,7 +23,11 @@ class BottomNavBar extends StatelessWidget {
       child: Consumer(
         builder: (context, value, child) {
           return BottomNavigationBar(
-            onTap: (newIn) => provider.newIndex(newI: newIn),
+            onTap: (newIn) {
+              context.read<SMProvider>()..newIndex(newIn);
+              print(newIn);
+            },
+
             unselectedLabelStyle: const TextStyle(color: Colors.white),
             currentIndex: provider.initialIndex,
             unselectedItemColor: Colors.white,

@@ -37,11 +37,11 @@ class _MainPageState extends State<MainPage> {
   SMProvider smprovider = SMProvider();
   @override
   Widget build(BuildContext context) {
-    final index = Provider.of<SMProvider>(context, listen: false);
-    return Consumer(
+    // final index = Provider.of<SMProvider>(context);
+    return Consumer<SMProvider>(
       builder: (context, value, child) {
-        return Scaffold(
-          body: screens[index.initialIndex],
+       return Scaffold(
+          body: screens[value.initialIndex],
           bottomNavigationBar: BottomNavBar(),
         );
       },

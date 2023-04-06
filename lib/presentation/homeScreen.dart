@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:happyshop/presentation/subpages/mostPopularspage.dart';
 import 'package:happyshop/presentation/subpages/promotionPage.dart';
 import 'package:happyshop/presentation/subpages/shoesPage.dart';
-import 'package:happyshop/widgets/itemDetail.dart';
+
 
 import '../appLogic/firebaseDB.dart';
 import '../constants/constants.dart';

@@ -5,7 +5,7 @@ class SMProvider extends ChangeNotifier {
   int get initialIndex => _i;
 
 
-  void newIndex({required newI}) {
+  void newIndex(int newI) {
     _i = newI;
     notifyListeners();
   }

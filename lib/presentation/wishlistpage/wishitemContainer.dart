@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:happyshop/constants/constants.dart';
+import 'package:provider/provider.dart';
+
+import '../../services/provider.dart';
 
 
 class WishItemContainer extends StatelessWidget {
-  const WishItemContainer({Key? key}) : super(key: key);
+  // void Function()? onPressed;
+  int index;
+  String imageUrl;
+  String label;
+  String price;
+  String? discount;
+   WishItemContainer({
+     // required this.onPressed,
+     required this.index,
+    required this.imageUrl,
+    required this.label,
+    required this.price,
+    this.discount,
+    Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +36,7 @@ class WishItemContainer extends StatelessWidget {
               SizedBox(
                 height: height * 0.23,
                 width: width * 0.4,
-                child: Image.network('https://images.unsplash.com/photo-1462524500090-89443873e2b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+                child: Image.network(imageUrl,
                 fit: BoxFit.cover,),
               ),
               Padding(
@@ -30,14 +46,14 @@ class WishItemContainer extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const Text('Pull and deer', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
+                         Text(label, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),),
                          SizedBox(width: width * 0.15,),
-                        IconButton(onPressed: (){}, icon: Icon(Icons.delete,  color: Colors.grey[700]),),
+                        IconButton(onPressed: ()=> context.read<SMProvider>().removeFromWishlist(index), icon: Icon(Icons.delete,  color: Colors.grey[700]),),
                       ],
                     ),
                    const Text('data', style: TextStyle(fontSize: 14, color: Colors.blueGrey),),
                     SizedBox(height: height * 0.05,),
-                    const Text('\$ 234.90', style: TextStyle(color: kbottomNavColor, fontSize: 18, fontWeight: FontWeight.w400),),
+                     Text(price, style: const TextStyle(color: kbottomNavColor, fontSize: 18, fontWeight: FontWeight.w400),),
                      SizedBox(height: height * 0.04,),
                     Container(
                       height: height * 0.04,

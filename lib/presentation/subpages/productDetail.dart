@@ -1,13 +1,16 @@
 
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:happyshop/appLogic/firebaseDB.dart';
 import 'package:happyshop/presentation/paymentPage/paymentPage.dart';
+import 'package:happyshop/widgets/snackBar.dart';
 
 import 'package:provider/provider.dart';
 import 'package:slider_button/slider_button.dart';
 
-import '../services/provider.dart';
+import '../../services/provider.dart';
 
 
 class ProductDetail extends StatelessWidget {
@@ -32,7 +35,7 @@ class ProductDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width =MediaQuery.of(context).size.width;
+    // double width =MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -41,7 +44,26 @@ class ProductDetail extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 15),
             child: IconButton(
-              onPressed: (){},
+              onPressed: (){
+                context.read<SMProvider>().addTowishList(
+                  ProductModel(imageUrl1: imageUrl1, label: label, price: price)
+                );
+                var snackBar = SnackBar(
+                  duration: const Duration(seconds: 1),
+                  elevation: 0,
+                  behavior: SnackBarBehavior.floating,
+                  backgroundColor: Colors.transparent,
+                  content: AwesomeSnackbarContent(
+                    title:'Wishlist',
+                    message: 'You\'ve successfully added the product to your wishlist',
+                    contentType: ContentType.success,
+                  ),
+                );
+
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(snackBar);
+              },
               icon:const Icon( Icons.favorite, color: Colors.red,),
             ),
           ),

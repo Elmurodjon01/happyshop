@@ -25,3 +25,22 @@ class ItemDetailModel {
         discount = snapshot.data()['discount'],
         isFavourite = snapshot.data()['isFavourite'].toDate();
 }
+
+
+class BagModel {
+  String label;
+  String style;
+  String size;
+  int quantity;
+  String price;
+  String? discount;
+  BagModel({
+    required this.label,
+    required this.size,
+    required this.style,
+   required this.quantity,
+    required this.price,
+    this.discount,
+
+});
+}

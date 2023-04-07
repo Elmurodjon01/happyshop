@@ -78,7 +78,7 @@ class ItemReusable extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 5),
               child: Text(
-                price,
+                '\$$price',
                 style: const TextStyle(color: Color(0xFF6C28FE), fontSize: 14),
               ),
             ),

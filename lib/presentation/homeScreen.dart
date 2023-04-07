@@ -10,7 +10,7 @@ import '../constants/constants.dart';
 import '../widgets/ad_service.dart';
 import '../widgets/discount_ends.dart';
 import '../widgets/itemReusable.dart';
-import '../widgets/productDetail.dart';
+import 'subpages/productDetail.dart';
 import '../widgets/reusable_seeall.dart';
 import '../widgets/search_area.dart';
 import '../widgets/upcomingPromotion.dart';

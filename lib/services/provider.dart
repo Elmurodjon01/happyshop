@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:happyshop/appLogic/firebaseDB.dart';
 
 class SMProvider extends ChangeNotifier {
   int _i = 0;
   int get initialIndex => _i;
-
+List<ProductModel> _wishList = [];
+List<>
+List<ProductModel> get wishList => _wishList;
 
   void newIndex(int newI) {
     _i = newI;
@@ -15,6 +18,18 @@ class SMProvider extends ChangeNotifier {
     activePage = page;
     notifyListeners();
   }
+
+  void addTowishList(ProductModel pd){
+    _wishList.add(pd);
+    notifyListeners();
+
+  }
+  void removeFromWishlist (int index){
+    _wishList.removeAt(index);
+    notifyListeners();
+  }
+
+
 
 
 }

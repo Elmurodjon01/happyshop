@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:happyshop/appLogic/firebaseDB.dart';
 import 'package:happyshop/widgets/discount_ends.dart';
-import 'package:happyshop/widgets/productDetail.dart';
+import 'package:happyshop/presentation/subpages/productDetail.dart';
 
 import '../../widgets/itemReusable.dart';
 import '../../widgets/upcomingPromotion.dart';

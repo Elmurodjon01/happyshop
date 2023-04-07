@@ -13,7 +13,11 @@ class ProductModel {
   String? discount;
   String? itemDetail;
   String? style;
+  String? size;
+  int? quantity;
   ProductModel({
+    this.size,
+    this.quantity,
     required this.imageUrl1,
     required this.label,
     required this.price,
@@ -25,5 +29,3 @@ class ProductModel {
     this.style,
   });
 }
-
-

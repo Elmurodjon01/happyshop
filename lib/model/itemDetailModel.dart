@@ -1,5 +1,3 @@
-
-
 class ItemDetailModel {
   String? imgUrl;
   String? title;
@@ -26,21 +24,21 @@ class ItemDetailModel {
         isFavourite = snapshot.data()['isFavourite'].toDate();
 }
 
-
 class BagModel {
+  String imageUrl;
   String label;
   String style;
-  String size;
+  // String size;
   int quantity;
   String price;
   String? discount;
   BagModel({
+    required this.imageUrl,
     required this.label,
-    required this.size,
+    // required this.size,
     required this.style,
-   required this.quantity,
+    required this.quantity,
     required this.price,
     this.discount,
-
-});
+  });
 }

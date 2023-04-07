@@ -1,16 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:happyshop/presentation/bagPage/dropDown.dart';
-import 'package:happyshop/services/provider.dart';
-import 'package:provider/provider.dart';
 
-class BagContainer extends StatefulWidget {
-  BagContainer({Key? key}) : super(key: key);
-
-  @override
-  State<BagContainer> createState() => _BagContainerState();
-}
-
-class _BagContainerState extends State<BagContainer> {
+class BagContainer extends StatelessWidget {
+  String imageUrl;
+  String style;
+  String price;
+  String discount;
+  BagContainer({
+    Key? key,
+    required this.imageUrl,
+    required this.style,
+    required this.price,
+    required this.discount,
+  }) : super(key: key);
 
   static List<String> quantity = ["1", "2", "3", "4", "5", "6", "7"];
   static List<String> sizeOfItem = [
@@ -21,9 +25,6 @@ class _BagContainerState extends State<BagContainer> {
   ];
   String dropDownValue = sizeOfItem.first;
   String dropDownValueNum = quantity.first;
-
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,9 +39,7 @@ class _BagContainerState extends State<BagContainer> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Image.network(
-                  'https://images.unsplash.com/photo-1605348532760-6753d2c43329?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80',
-                ),
+                child: Image.network(imageUrl),
               ),
               Padding(
                 padding: const EdgeInsets.only(
@@ -55,9 +54,10 @@ class _BagContainerState extends State<BagContainer> {
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
-                    const Text(
-                      'Cream elegrant',
-                      style: TextStyle(fontSize: 13, color: Colors.blueGrey),
+                    Text(
+                      style,
+                      style:
+                          const TextStyle(fontSize: 13, color: Colors.blueGrey),
                     ),
                     const SizedBox(
                       height: 30,
@@ -82,8 +82,9 @@ class _BagContainerState extends State<BagContainer> {
                             children: [
                               const Text('Quantity'),
                               DropDownBox(
-                                  dropDownValue: dropDownValueNum,
-                                  sizeOfItem: quantity,),
+                                dropDownValue: dropDownValueNum,
+                                sizeOfItem: quantity,
+                              ),
                             ],
                           ),
                         ],
@@ -99,20 +100,21 @@ class _BagContainerState extends State<BagContainer> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(
+                Padding(
+                  padding: const EdgeInsets.only(
                     top: 10,
                   ),
                   child: Text(
-                    '\$398.90',
-                    style: TextStyle(color: Color(0xFF6C28FE), fontSize: 14),
+                    price,
+                    style:
+                        const TextStyle(color: Color(0xFF6C28FE), fontSize: 14),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 7),
+                Padding(
+                  padding: const EdgeInsets.only(left: 7),
                   child: Text(
-                    '\$402.00',
-                    style: TextStyle(
+                    discount,
+                    style: const TextStyle(
                       color: Color(0xFF777777),
                       fontSize: 10,
                       decoration: TextDecoration.lineThrough,
